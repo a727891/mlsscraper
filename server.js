@@ -1,14 +1,14 @@
 
 var express = require('express');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var request = require('request');
 var cheerio = require('cheerio');
 var minify = require('html-minifier').minify;
 var app     = express();
 var Schema = mongoose.Schema;
 var port = '8080';
-
-mongoose.connect('mongodb://localhost/mls');
+var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/mls';
+mongoose.connect(mongoUrl);
 
 var listingSchema = Schema({
     "mls": String,
@@ -73,6 +73,9 @@ app.get('/scrape', function(req, res){
     }else{
         scrape(res);
     }
+});
+app.get('/test', function(req, res){
+    res.send('App is working mongo url = ', mongoUrl);
 });
 function scrapeReturn(res){
     listingModel.find().sort([['price', 'ascending']]).exec(function(err,MasterList){
