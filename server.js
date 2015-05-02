@@ -6,7 +6,7 @@ var cheerio = require('cheerio');
 var minify = require('html-minifier').minify;
 var app     = express();
 var Schema = mongoose.Schema;
-var port = '8080';
+app.set('port', (process.env.PORT || 8080));
 var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/mls';
 mongoose.connect(mongoUrl);
 
@@ -303,8 +303,8 @@ function parseRow3(row, record) {
 
 }
 
-app.listen(port);
-console.log('Server running on port %s', port);
+app.listen(app.get('port'));
+console.log('Server running on port %s', app.get('port'));
 scrape({json:function(){
     console.log('Initial data loaded');
 }});
