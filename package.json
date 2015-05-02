@@ -1,5 +1,6 @@
 {
   "name": "mlsscraper",
+  "repository":"https://github.com/a727891/mlsscraper",
   "ngRootModule": "app",
   "version": "1.0.0",
   "description": "scrape lubbock mls listings",
