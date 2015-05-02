@@ -1,6 +1,6 @@
 
 var express = require('express');
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var request = require('request');
 var cheerio = require('cheerio');
 var minify = require('html-minifier').minify;
