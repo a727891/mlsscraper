@@ -77,6 +77,9 @@ app.get('/scrape', function(req, res){
 app.get('/test', function(req, res){
     res.send('App is working mongo url = ', mongoUrl);
 });
+app.get('/', function(req, res){
+    res.sendfile('dist.html', { root: __dirname + "/client" } );
+});
 function scrapeReturn(res){
     listingModel.find().sort([['price', 'ascending']]).exec(function(err,MasterList){
         res.json({
