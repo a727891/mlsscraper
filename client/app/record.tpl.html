@@ -1,0 +1,51 @@
+<div class="listing" ng-class="{'contingent':r.record.listingStatus==='Contingent'}">
+    <div class="left ten buttonFill">
+        <button class="btn btn-success" ng-click="r.watch()"
+                ng-if="r.record.userStatus!='Watched'&& r.record.userStatus!='Ignored'" >
+            /\
+        </button>
+        <button class="btn btn-info" ng-click="r.reset()"
+                ng-if="r.record.userStatus!='Viewed'" >
+            --
+        </button>
+        <button class="btn btn-danger" ng-click="r.ignore();"
+                ng-if="r.record.userStatus!='Ignored' && r.record.userStatus!='Watched'" >
+            \/
+        </button>
+        <button class="btn btn-success lockBottom" ng-click="r.openDetails();">
+            MLS
+        </button>
+        <div class="clearFix"></div>
+    </div>
+    <div class="left ninety">
+        <div>
+            <span style="font-size: 1.1em;font-weight: bold">{{::r.record.price}}</span>
+            <span>{{::r.record.price|downPayment}}</span>
+            <span>MLS: <a ng-click="r.openDetails()">{{::r.record.mls}}</a></span>
+            <span>{{::r.record.listingStatus}}</span>
+        </div>
+        <div>
+            <span><b>{{::r.record.year|yearsAgo}}</b> <i class="fa fa-calendar"></i></span>
+            <span><b>{{::r.record.beds}}</b> <i class="fa fa-bed"></i></span>
+            <span><b>{{::r.record.baths}}</b> <i class="fa fa-male"></i>|<i class="fa fa-female"></i></span>
+            <span>
+                {{::r.record.sqft}}ft<sup>2</sup>, lot:{{::r.record.lot|numbersOnly}} ft<sup>2</sup>
+                <i class="fa fa-square"></i>
+            </span>
+        </div>
+        <div>
+            <span>{{::r.record.address}}</span>
+            <span ng-class="{'active':r.record.mapit}" ng-click="r.mapToggle()">Map It</span>
+        </div>
+        <div>
+            <div class="left">
+                <img class="propertyPic" ng-src="{{r.record.imageUrl}}">
+            </div>
+            <div class="left propertyRemarks">
+                {{::r.record.remarks}}
+            </div>
+        </div>
+        <div class="clearFix"></div>
+    </div>
+    <div class="clearFix"></div>
+</div>

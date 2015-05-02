@@ -1,0 +1,23 @@
+{
+  "server":{
+    "url":"http://localhost:8080/"
+  },
+  "client": "./client/",
+  "build": "./dist/",
+  "vendorjs": "./client/bower/",
+  "css": [
+    "./client/app/**/*.css"
+  ],
+  "js": [
+    "./client/app/**/*.js"
+  ],
+  "htmltemplates": {
+    "root": "/",
+    "paths": [
+      "./client/app/**/*.html"
+    ]
+  },
+  "images": [
+    "./client/images/**/*.png"
+  ]
+}
