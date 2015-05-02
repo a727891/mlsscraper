@@ -5,7 +5,8 @@
             'ui.router',
             'uiGmapgoogle-maps'
         ])
-        .constant('ScrapeUrl','http://localhost:8080/')
+        //.constant('ScrapeUrl','http://localhost:8080/')
+        .constant('ScrapeUrl','frozen-island-7180.herokuapp.com/')
         .config(ConfigFunc)
         .config(MapsAPILoader)
         .filter('yearsAgo', YearsAgoFilter)
