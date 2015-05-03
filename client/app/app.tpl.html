@@ -1,6 +1,6 @@
 <div>
-    <div id="header">
-        <div class="fifty left" style="width: 50%">
+    <div id="header" style="overflow: hidden">
+        <div class="left">
             <div style="padding: 5px;;">
                 <span>Filter select:</span>
                 <ul class="filterSelect">
@@ -13,7 +13,7 @@
                 Showing {{filteredListing.length}} of {{ctrl.data.length}}
             </div>
         </div>
-        <div class="fifty left title">
+        <div class="left title">
             <span>Micah's MLS Scraper!</span>
         </div>
     </div>
@@ -25,7 +25,7 @@
                 </record-dir>
             </div>
         </div>
-        <div class="fixedTopRight fifty">
+        <div class="left fifty">
             <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'>
                 <ui-gmap-window coords="ctrl.mapWindow.coords"
                                 show="ctrl.mapWindow.show"

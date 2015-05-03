@@ -23,6 +23,7 @@ body{
 #pagebody{
     position: relative;
     margin-top: 30px;
+    width:1100px;
 }
 .listing {
     width:500px;
@@ -56,6 +57,7 @@ body{
     width:45px;
 }
 .fifty{
+    margin:5px;
     width:500px;
     padding:2px;
 }

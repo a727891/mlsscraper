@@ -10,7 +10,7 @@
      *
      * @ngInject
      **/
-    function appControllerDefinition(scraper, uiGmapGoogleMapApi) {
+    function appControllerDefinition($scope, scraper, uiGmapGoogleMapApi) {
         var self = this;
 
         self.refresh = activate;
@@ -44,6 +44,9 @@
             options:{
             }
         };
+        $scope.$watch(function(){return self.activeFilter;},function(){
+            AddMapMarkers();
+        });
 
         ///////////////////////////////////////
         activate();
@@ -55,20 +58,23 @@
             uiGmapGoogleMapApi.then(function() {
                 scraper.getScrape().then(function(data){
                     self.data = data;
-                    //Get listing data once maps api is loaded
-                    self.mapWindow.show = false;
-                    //Add map markers
-                    self.map.markers = [];
-                    self.data.map(function(record){
-                        if (record.userStatus!=='Ignored'){
-                            addMarker(record);
-                        }
-                    });
+                    AddMapMarkers();
                     self.cacheAge = scraper.getCacheTimeout();
                 });
             });
         }
         ///////////////////////////////////////
+        function AddMapMarkers(){
+            //Get listing data once maps api is loaded
+            self.mapWindow.show = false;
+            //Add map markers
+            self.map.markers = [];
+            self.data.map(function(record){
+                if (record.userStatus==self.activeFilter){
+                    addMarker(record);
+                }
+            });
+        }
         function addMarker(record){
             self.map.markers.push(
                 {
@@ -78,8 +84,7 @@
                         longitude: record.lon
                     },
                     options:{
-                        title:record.price,
-                        visible:record.mapit
+                        title:record.price
                     },
                     data: record
                 }
