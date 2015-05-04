@@ -11,7 +11,8 @@
             restrict: 'EA',
             replace: true,
             scope: {
-                record:'='
+                record:'=',
+                mapupdate:"&"
             },
             templateUrl: '/app/record.tpl.html'
         };
@@ -22,11 +23,6 @@
          **/
         function recordController(scraper) {
             var self = this;
-            self.record.mapit = (self.record.userStatus === 'Watched');
-
-            self.mapToggle = function(){
-                self.record.mapit = !self.record.mapit;
-            };
             self.ignore = function() {
                 scraper.addIgnore(self.record.mls).then(updateUserStatus);
             };
@@ -39,6 +35,7 @@
 
             function updateUserStatus(model){
                 self.record.userStatus = model.userStatus;
+                self.mapupdate();
             }
 
             self.openDetails = function(){

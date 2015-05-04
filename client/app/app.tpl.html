@@ -21,7 +21,7 @@
         <div class="left fifty">
             <div>
                 <record-dir ng-repeat="record in filteredListing=(ctrl.data|filter:({userStatus:ctrl.activeFilter}))"
-                            record="record">
+                            record="record" mapupdate="ctrl.AddMapMarkers()">
                 </record-dir>
             </div>
         </div>
@@ -30,10 +30,9 @@
                 <ui-gmap-window coords="ctrl.mapWindow.coords"
                                 show="ctrl.mapWindow.show"
                                 closeClick="ctrl.closeClick()">
-                    <div>
-                        <div>{{ctrl.mapWindow.record.mls}} - {{ctrl.mapWindow.record.price}}</div>
+                    <div style="width: 250px">
+                        <div>{{ctrl.mapWindow.record.mls}} - <b>{{ctrl.mapWindow.record.price}}</b></div>
                         <div>{{ctrl.mapWindow.record.address}}</div>
-                        <div>{{ctrl.mapWindow.record.userStatus}}</div>
                     </div>
                 </ui-gmap-window>
                 <ui-gmap-markers models="ctrl.map.markers"
@@ -45,6 +44,10 @@
             <div>
                 <button class="btn btn-info" ng-click="ctrl.refresh()">Reload data</button>
                 Data updates on server {{ctrl.cacheAge|fromNow}}
+                <div ng-if="ctrl.mapWindow.show">
+                    <record-dir record="ctrl.mapWindow.record" mapupdate="ctrl.AddMapMarkers()">
+                    </record-dir>
+                </div>
             </div>
             <div class="clearFix"></div>
         </div>

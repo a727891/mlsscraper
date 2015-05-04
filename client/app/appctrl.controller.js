@@ -58,13 +58,13 @@
             uiGmapGoogleMapApi.then(function() {
                 scraper.getScrape().then(function(data){
                     self.data = data;
-                    AddMapMarkers();
+                    self.AddMapMarkers();
                     self.cacheAge = scraper.getCacheTimeout();
                 });
             });
         }
         ///////////////////////////////////////
-        function AddMapMarkers(){
+        self.AddMapMarkers= function(){
             //Get listing data once maps api is loaded
             self.mapWindow.show = false;
             //Add map markers
@@ -74,7 +74,7 @@
                     addMarker(record);
                 }
             });
-        }
+        };
         function addMarker(record){
             self.map.markers.push(
                 {
