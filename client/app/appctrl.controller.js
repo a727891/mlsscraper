@@ -45,7 +45,7 @@
             }
         };
         $scope.$watch(function(){return self.activeFilter;},function(){
-            AddMapMarkers();
+            self.AddMapMarkers();
         });
 
         ///////////////////////////////////////
